@@ -4,8 +4,9 @@ Changes in version 0.6
 - Fixed a bug in the module library that would cause it to break when
   more than one pair of strings was input with a single read call.
 
-- Added a plain MD5 module.  I will add further cryptographic hashes as
-  soon as I can find either public domain or GPLed versions of them.
+- Added a plain MD5 as well as a MD5-crypt module.  I will add other
+  common cryptographic hashes as soon as I can find GPL'able versions of
+  them.
 
 Development of this version has been sponsored by FutureQuest, Inc.
 ossi@FutureQuest.net  http://www.FutureQuest.net/
