@@ -25,5 +25,9 @@ reading the terminating NUL byte of the second of each pair of
 strings, before reading any more data.  This is required to prevent
 deadlocking.</p>
 
+<p>Since the data format effectively disallows data containing NUL
+bytes, the client and module must agree to encode binary data in some
+other format.  Hexadecimal digits and base64 are good choices.</p>
+
 </body>
 </html>
