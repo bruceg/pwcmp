@@ -1,0 +1,29 @@
+<html>
+<body>
+
+<h1>Password Comparison Modules</h1>
+
+<h2>Input/Output</h2>
+
+<p>Input to the module is a series of pairs of NUL-terminated strings
+on standard input.  The first of each pair is the plaintext pass
+phrase.  The second of each pair is the stored, hashed pass
+phrase.</p>
+
+<p>Output from the module is a series of bytes on standard output, one
+for each complete pair of input strings.  A zero byte indicates that
+the passwords match.</p>
+
+<h2>Code Considerations</h2>
+
+<p>The module must output its comparison status byte immedately after
+reading the terminating NUL byte of the second of each pair of
+strings, before reading any more data.  This is required to prevent
+deadlocking.</p>
+
+<p>The module try to avoid doing any more or less work when the
+comparison succeeds than when the comparison fails, to avoid
+timing-based attacks on other systems that use the module.</p>
+
+</body>
+</html>
