@@ -1,0 +1,3 @@
+module.a
+crypto/md5-crypt.o
+crypto/md5.o
