@@ -4,7 +4,12 @@
 rem() { echo; echo --- "$@"; }
 hex() { hexdump -v -e '1/1 "%02x" "\n"'; }
 cmp() { printf "$1\000$2\000" | $3 | hex; }
-cmplist() { while read a b; do printf "$a\000$b\000"; done | $1 | hex; }
+cmplist() {
+  while read a b; do
+    printf "$a\0"
+    printf "$b\0"
+  done | $1 | hex
+}
 
 rem Testing plain module, single input
 cmp abc abc ./pwcmp-plain
@@ -29,6 +34,17 @@ abc acfq3pJRE02cQ
 abd acfq3pJRE02cQ
 abc acfq3pJRE02cF
 abc adfq3pJRE02cQ
+EOF
+
+rem Testing md5 module, streamed input
+cmplist ./pwcmp-md5 <<EOF
+a 0cc175b9c0f1b6a831c399e269772661
+a 0cd175b9c0f1b6a831c399e269772661
+b 0cc175b9c0f1b6a831c399e269772661
+abc 900150983cd24fb0d6963f7d28e17f72
+abcdefghijklmnopqrstuvwxyz c3fcd3d76192e4007dfb496cca67e13b
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 d174ab98d277d9f5a5611c2c9f419d9f
+12345678901234567890123456789012345678901234567890123456789012345678901234567890 57edf4a22be3c955ac49da2e2107b67a
 EOF
 
 rem Testing pwcmp-test with plain
