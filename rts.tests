@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# Support functions
+rem() { echo; echo --- "$@"; }
+hex() { hexdump -v -e '1/1 "%02x" "\n"'; }
+cmp() { printf "$1\000$2\000" | $3 | hex; }
+cmplist() { while read a b; do printf "$a\000$b\000"; done | $1 | hex; }
+
+rem Testing plain module, single input
+cmp abc abc ./pwcmp-plain
+cmp abc abcd ./pwcmp-plain
+cmp abcd abc ./pwcmp-plain
+cmp abc abx ./pwcmp-plain
+cmp abc Abc ./pwcmp-plain
+
+rem Testing plain module, streamed input
+cmplist ./pwcmp-plain <<EOF
+abc abc
+abc abcd
+abcd abc
+abc abx
+abc abC
+EOF
+
+rem Testing crypt module, streamed input
+cmplist ./pwcmp-crypt <<EOF
+abc abFZSxKKdq5s6
+abc acfq3pJRE02cQ
+abd acfq3pJRE02cQ
+abc acfq3pJRE02cF
+abc adfq3pJRE02cQ
+EOF
+
+rem Testing pwcmp-test with plain
+./pwcmp-test plain <<EOF
+abc
+abc
+abc
+axc
+EOF
+
+rem Testing pwcmp-test with crypt
+./pwcmp-test crypt <<EOF
+abc
+abFZSxKKdq5s6
+abc
+acfq3pJRE02cQ
+abd
+acfq3pJRE02cQ
+abc
+acfq3pJRE02cF
+abc
+adfq3pJRE02cQ
+EOF
+
+rem Testing pwcmp-test with pwcmp-plain
+./pwcmp-test ./pwcmp-plain <<EOF
+abc
+abc
+abc
+axc
+EOF

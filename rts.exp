@@ -1,0 +1,36 @@
+
+--- Testing plain module, single input
+00
+01
+01
+01
+01
+
+--- Testing plain module, streamed input
+00
+01
+01
+01
+01
+
+--- Testing crypt module, streamed input
+00
+00
+01
+01
+01
+
+--- Testing pwcmp-test with plain
+0
+1
+
+--- Testing pwcmp-test with crypt
+0
+0
+1
+1
+1
+
+--- Testing pwcmp-test with pwcmp-plain
+0
+1
