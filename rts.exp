@@ -29,6 +29,21 @@
 00
 00
 
+--- Testing md5-crypt module, streamed input
+00
+01
+01
+01
+01
+01
+01
+01
+01
+01
+01
+01
+01
+
 --- Testing pwcmp-test with plain
 0
 1

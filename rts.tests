@@ -47,6 +47,23 @@ ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 d174ab98d277d9f5a
 12345678901234567890123456789012345678901234567890123456789012345678901234567890 57edf4a22be3c955ac49da2e2107b67a
 EOF
 
+rem Testing md5-crypt module, streamed input
+cmplist ./pwcmp-md5-crypt <<EOF
+testpass \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpasx \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpas \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpasss \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpass \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA2
+testpass \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA11
+testpass \$1\$mMyFnVuL\$SqlKm44oUTX1HtAZEYdIA
+testpass \$1\$mMyFnVux\$SqlKm44oUTX1HtAZEYdIA1
+testpass \$1\$mMyFnVuLx\$SqlKm44oUTX1HtAZEYdIA1
+testpass \$1\$mMyFnVu\$SqlKm44oUTX1HtAZEYdIA1
+testpass 1\$mMfFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpass \$1mMfFnVuL\$SqlKm44oUTX1HtAZEYdIA1
+testpass \$1\$mMfFnVuLSqlKm44oUTX1HtAZEYdIA1
+EOF
+
 rem Testing pwcmp-test with plain
 ./pwcmp-test plain <<EOF
 abc
