@@ -34,21 +34,23 @@ static int do_read(void)
   while (buflen < sizeof buf) {
     const char* tmp;
     unsigned long rd;
+    if (buflen) {
+      if ((tmp = memchr(buf, 0, buflen)) != 0) {
+	unsigned len;
+	plain = buf;
+	encod = tmp + 1;
+	len = encod - buf;
+	if ((tmp = memchr(encod, 0, buflen - len)) != 0) {
+	  ++tmp;
+	  bufpos = tmp - buf;
+	  return 1;
+	}
+      }
+    }
     if ((rd = read(0, buf + buflen, sizeof buf - buflen)) == 0 ||
 	rd == (unsigned long)-1)
       break;
     buflen += rd;
-    if ((tmp = memchr(buf, 0, buflen)) != 0) {
-      unsigned len;
-      plain = buf;
-      encod = tmp + 1;
-      len = encod - buf;
-      if ((tmp = memchr(encod, 0, buflen - len)) != 0) {
-	++tmp;
-	bufpos = tmp - buf;
-	return 1;
-      }
-    }
   }
   return 0;
 }
