@@ -1,0 +1,19 @@
+<html>
+<body>
+
+<h2><a href="pwcmp.html">Password Comparison Modules</a></h2>
+
+<h1>Password Comparison Modules Module Library</h1>
+
+<p>The module library requires the definition of a single routine:
+<tt>int pwcmp_check(const char* plain, const char* encod)</tt>.
+Define this routine to return zero when the plaintext compares equal
+to the encoded text, and non-zero otherwise.  The module library
+handles all startup, shutdown, and I/O conditions.</p>
+
+<p>The module should try to avoid doing any more or less work when the
+comparison succeeds than when the comparison fails, to avoid
+timing-based attacks on other systems that use the module.</p>
+
+</body>
+</html>

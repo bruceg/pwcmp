@@ -3,27 +3,19 @@
 
 <h1>Password Comparison Modules</h1>
 
-<h2>Input/Output</h2>
+<p><a href="protocol.html">Protocol</a>
+<br><a href="client.html">Client Library</a>
+<br><a href="module.html">Module Library</a>
+</p>
 
-<p>Input to the module is a series of pairs of NUL-terminated strings
-on standard input.  The first of each pair is the plaintext pass
-phrase.  The second of each pair is the stored, hashed pass phrase.
-The total size of each pair of strings must not exceed 4096 bytes.</p>
+<hr>
 
-<p>Output from the module is a series of bytes on standard output, one
-for each complete pair of input strings.  A zero byte indicates that
-the passwords match.</p>
-
-<h2>Code Considerations</h2>
-
-<p>The module must output its comparison status byte immedately after
-reading the terminating NUL byte of the second of each pair of
-strings, before reading any more data.  This is required to prevent
-deadlocking.</p>
-
-<p>The module try to avoid doing any more or less work when the
-comparison succeeds than when the comparison fails, to avoid
-timing-based attacks on other systems that use the module.</p>
+<p>The password comparison modules framework gives applications that
+need to compare passwords (most notably <a
+href="../cvm/cvm.html">CVM</a>) a method of doing so without
+hard-coding any single comparison method.  The modules are
+long-running processes, enabling the comparisons to proceed with
+minimal overhead while maintaining platform-independancy.</p>
 
 </body>
 </html>

@@ -1,0 +1,31 @@
+<html>
+<body>
+
+<h2><a href="pwcmp.html">Password Comparison Modules</a></h2>
+
+<h1>Password Comparison Modules Client Library</h1>
+
+<p>The client library defines the following routines:
+
+<ul>
+
+<li><tt>int pwcmp_start(const char* module)</tt> This routine sets up
+all necessary internal data for doing password comparisons.  If
+<tt>module</tt> is NULL, empty, or is "<tt>plain</tt>", a built-in
+comparison function using <tt>strcmp</tt> is used.  If <tt>module</tt>
+is "<tt>crypt</tt>", a built-in comparison function using
+<tt>crypt</tt> is used.  For all other modules, an external module is
+started.
+
+<li><tt>int pwcmp_check(const char* plain, const char* encod)</tt>
+Compare a plaintext password with an encoded one.  Returns -1
+if a temporary error occurred, zero if the passwords compared equal,
+and non-zero otherwise.
+
+<li><tt>void pwcmp_stop(void)</tt> Shutdown the password comparison
+data, including closing off the comparison module.
+
+</ul></p>
+
+</body>
+</html>
