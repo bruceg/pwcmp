@@ -1,8 +1,8 @@
 pwcmp
 Password Comparison Modules
 Bruce Guenter <bruceg@em.ca>
-Version 0.6
-2001-07-09
+Version @VERSION@
+@TODAY@
 
 This package defines a framework for comparing passwords.
 
