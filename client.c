@@ -93,7 +93,7 @@ static int pwcmp_start_pipe(const char* module)
 
 int pwcmp_start(const char* module)
 {
-  if (strcmp(module, "plain") == 0)
+  if (!module || module[0] == 0 || strcmp(module, "plain") == 0)
     cmpfn = pwcmp_plain;
   else if (strcmp(module, "crypt") == 0)
     cmpfn = pwcmp_crypt;
