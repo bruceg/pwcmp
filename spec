@@ -37,5 +37,5 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc ANNOUNCEMENT COPYING NEWS README *.html
+%doc ANNOUNCEMENT COPYING NEWS README TODO *.html
 %{_bindir}/*
